@@ -1,0 +1,16 @@
+server:
+  port: 8081
+  error:
+    include-message: always
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: develop
+    password: Develop@Develop
+    url: jdbc:mysql://localhost:3306/studyjava
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: true
