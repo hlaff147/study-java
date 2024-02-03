@@ -1,0 +1,37 @@
+# Arquivos gerados pelo Maven
+target/
+
+# Arquivos específicos do Eclipse
+.classpath
+.project
+.settings/
+
+# Arquivos específicos do NetBeans
+nb-configuration.xml
+/nbproject/private/
+
+# Arquivos específicos do IntelliJ
+.idea/
+*.iml
+*.iws
+*.iws
+*.ipr
+
+# Logs
+*.log
+
+# Arquivos temporários
+.DS_Store
+
+# Configurações do Visual Studio Code (VSCode)
+.vscode/
+.history/
+.cache/
+
+# Arquivos de compilação Java
+*.class
+
+# Pacotes Java
+*.jar
+*.war
+*.ear
