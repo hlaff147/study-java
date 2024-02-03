@@ -1,0 +1,11 @@
+# Configurações do MongoDB
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: user
+
+    # Configurações do servidor embutido
+    server:
+        port: 8080
