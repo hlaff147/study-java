@@ -17,22 +17,18 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    // Create (Criar) - Adiciona um novo usuário
     public User createUser(User user) {
         return userRepository.save(user);
     }
 
-    // Read (Ler) - Busca um usuário pelo ID
     public Optional<User> getUserById(String userId) {
         return userRepository.findById(userId);
     }
 
-    // Read (Ler) - Busca todos os usuários
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    // Update (Atualizar) - Atualiza as informações de um usuário
     public User updateUser(String userId, User updatedUser) {
         Optional<User> existingUserOptional = userRepository.findById(userId);
         if (existingUserOptional.isPresent()) {
@@ -43,10 +39,9 @@ public class UserService {
             existingUser.setSaldo(updatedUser.getSaldo());
             return userRepository.save(existingUser);
         }
-        return null; // Pode ser mais apropriado lançar uma exceção caso o usuário não seja encontrado
+        return null;
     }
 
-    // Delete (Excluir) - Remove um usuário pelo ID
     public void deleteUser(String userId) {
         userRepository.deleteById(userId);
     }
