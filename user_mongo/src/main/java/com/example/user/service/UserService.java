@@ -8,14 +8,13 @@ import org.springframework.stereotype.Service;
 import com.example.user.model.User;
 import com.example.user.repository.UserRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     public User createUser(User user) {
         return userRepository.save(user);
