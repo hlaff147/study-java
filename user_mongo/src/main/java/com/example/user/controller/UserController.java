@@ -1,17 +1,12 @@
 package com.example.user.controller;
 
-import java.util.List;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.example.user.model.User;
 import com.example.user.service.UserService;
-
+import com.example.user.util.ValidateFieldsUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -19,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 
     private final UserService userService;
+    private final ValidateFieldsUtil<User> validateFieldsUtil;
 
     @GetMapping
     public List<User> getAllUsers() {
@@ -27,7 +23,13 @@ public class UserController {
 
     @PostMapping
     public User createUser(@RequestBody User user) {
+        validateFieldsUtil.validate(user);
         return userService.createUser(user);
+    }
+
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable String id, @RequestBody User user) {
+        return userService.updateUser(id, user);
     }
 
 }

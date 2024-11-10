@@ -1,14 +1,12 @@
 package com.example.user.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.stereotype.Service;
-
 import com.example.user.model.User;
 import com.example.user.repository.UserRepository;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,17 +27,17 @@ public class UserService {
     }
 
     public User updateUser(String userId, User updatedUser) {
-        Optional<User> existingUserOptional = userRepository.findById(userId);
-        if (existingUserOptional.isPresent()) {
-            User existingUser = existingUserOptional.get();
-            existingUser.setNome(updatedUser.getNome());
-            existingUser.setEmail(updatedUser.getEmail());
-            existingUser.setIdade(updatedUser.getIdade());
-            existingUser.setSaldo(updatedUser.getSaldo());
-            return userRepository.save(existingUser);
-        }
-        return null;
+        return getUserById(userId)
+                .map(existingUser -> {
+                    existingUser.setNome(updatedUser.getNome());
+                    existingUser.setEmail(updatedUser.getEmail());
+                    existingUser.setIdade(updatedUser.getIdade());
+                    existingUser.setSaldo(updatedUser.getSaldo());
+                    return userRepository.save(existingUser);
+                })
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com ID: " + userId));
     }
+
 
     public void deleteUser(String userId) {
         userRepository.deleteById(userId);
