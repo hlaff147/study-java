@@ -11,12 +11,10 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private String secretKey = "mysacret";
+    private final String secretKey = "mysacret";
+    private final String encodedSecretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
 
     public String generateToken(String username) {
-
-        String encodedSecretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
-
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
@@ -26,7 +24,11 @@ public class JwtUtil {
     }
 
     public String extractUsername(String token) {
-        return Jwts.parser().setSigningKey(Base64.getEncoder().encodeToString(secretKey.getBytes())).parseClaimsJws(token).getBody().getSubject();
+        return Jwts.parser()
+                .setSigningKey(encodedSecretKey)
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
     }
 
     public boolean validateToken(String token, UserDetails userDetails) {
@@ -35,6 +37,11 @@ public class JwtUtil {
     }
 
     private boolean isTokenExpired(String token) {
-        return Jwts.parser().setSigningKey(Base64.getEncoder().encodeToString(secretKey.getBytes())).parseClaimsJws(token).getBody().getExpiration().before(new Date());
+        return Jwts.parser()
+                .setSigningKey(encodedSecretKey)
+                .parseClaimsJws(token)
+                .getBody()
+                .getExpiration()
+                .before(new Date());
     }
 }
