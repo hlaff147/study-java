@@ -32,4 +32,9 @@ public class UserController {
         return userService.updateUser(id, user);
     }
 
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable String id) {
+        return userService.getUserByIdSafe(id);
+    }
+
 }
