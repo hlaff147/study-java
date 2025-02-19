@@ -1,0 +1,60 @@
+# Ignore arquivos de build e compilação (Java)
+*.class
+*.jar
+*.war
+*.ear
+./*.class
+
+
+# Pastas comuns de build
+/build/
+out/
+target
+bin/
+./out
+out/*
+
+# Arquivos gerados pelo IntelliJ IDEA
+/.idea/
+/*.iml
+*.ipr
+*.iws
+*.iml
+
+# Arquivos gerados por outros IDEs
+*.classpath
+*.project
+*.settings/
+/.vscode/
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+*.swp
+*~
+*.class
+
+# Arquivos criados pelo sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Configurações de Maven/Gradle locais
+/.mvn/
+.mvn/timing.properties
+/pom.xml.tag
+/pom.xml.releaseBackup
+/pom.xml.versionsBackup
+**/target/
+
+# Arquivos de cache e temporários do Gradle
+.gradle/
+/build/
+
+# Arquivos de ambiente (variáveis locais, senhas, etc.)
+.env
+*.env
+
+# Configurações do Java (se existir)
+hs_err_pid*.log
+replay_pid*.log
