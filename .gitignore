@@ -58,3 +58,4 @@ desktop.ini
 # Configurações do Java (se existir)
 hs_err_pid*.log
 replay_pid*.log
+/.metadata/
