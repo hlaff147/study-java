@@ -18,8 +18,13 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public Optional<User> getUserById(String userId) {
+    private Optional<User> getUserById(String userId) {
         return userRepository.findById(userId);
+    }
+
+    public User getUserByIdSafe(String userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
     }
 
     public List<User> getAllUsers() {
